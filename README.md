@@ -2,6 +2,7 @@
 
 ## Install
 git clone https://github.com/zhymas/BDA-project-spotify-data.git
+
 source venv/bin/activate
 
 ## START
