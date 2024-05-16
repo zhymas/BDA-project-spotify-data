@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
 
 track_df = pd.read_csv('spotify_tracks.csv')
 
@@ -34,4 +35,19 @@ plt.scatter(track_df['duration_ms'] / 1000, track_df['popularity'], color='purpl
 plt.title('Track Popularity vs. Duration')
 plt.xlabel('Duration (seconds)')
 plt.ylabel('Popularity')
+plt.show()
+
+correlation = track_df['duration_ms'].corr(track_df['popularity'])
+print(f"\nCorrelation between track duration and popularity: {correlation}")
+
+plt.figure(figsize=(10, 6))
+plt.scatter(track_df['duration_ms'] / 1000, track_df['popularity'], color='purple', alpha=0.5)
+plt.title('Track Popularity vs. Duration with Trendline')
+plt.xlabel('Duration (seconds)')
+plt.ylabel('Popularity')
+
+z = np.polyfit(track_df['duration_ms'] / 1000, track_df['popularity'], 1)
+p = np.poly1d(z)
+plt.plot(track_df['duration_ms'] / 1000, p(track_df['duration_ms'] / 1000), "r--")
+
 plt.show()
